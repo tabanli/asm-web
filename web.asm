@@ -62,10 +62,12 @@ cliaddr servaddr_in
 cliaddr_len dd sizeof_servaddr
 
 response db "HTTP/1.1 200 OK", 13, 10
-	 db "Content-Type: text/html; charset=UTF-8", 13, 10
-	 db "Connection: close", 13, 10
-	 db 13, 10
-	 db "<h1>Hello from fasm!</h1>", 13, 10
+         db "Content-Type: text/html", 13, 10
+         db "Connection: close", 13, 10
+         db 13, 10
+         db "<html><body style=""display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;"">", 13, 10
+         db "<div style=""text-align: center;""><h1>That visitor has no idea what he's looking at.</h1>", 13, 10
+         db "<img src=""https://i1.sndcdn.com/artworks-DpOeuNBfyUErwo6j-HidoVA-t500x500.jpg"" style=""max-width: 80%; height: auto;""></div></body></html>", 13, 10
 response_len = $ - response
 
 start db "INFO: Starting Web Server!", 10
