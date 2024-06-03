@@ -1,3 +1,5 @@
+;; Use "fasm web.asm" command to assemble.
+
 format ELF64 executable
 
 include 'defs.asm'
@@ -13,6 +15,7 @@ main:
     write STDOUT, socket_trace_msg, socket_trace_msg.size
     socket AF_INET, SOCK_STREAM, 0
     check_error
+
     mov qword [sockfd], rax
 
     ;; Bind socket
@@ -56,8 +59,10 @@ segment readable writeable
 
 sockfd dq -1
 connfd dq -1
+
 servaddr servaddr_in
 sizeof_servaddr = $ - servaddr.sin_family
+
 cliaddr servaddr_in
 cliaddr_len dd sizeof_servaddr
 

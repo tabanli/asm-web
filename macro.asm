@@ -24,20 +24,12 @@ macro syscall3 number, a, b, c
 
 macro write fd, buf, count
 {
-    mov rax, SYS_write
-    mov rdi, fd
-    mov rsi, buf
-    mov rdx, count
-    syscall
+    syscall3 SYS_write, fd, buf, count
 }
 
 macro socket domain, type, protocol
 {
-    mov rax, SYS_socket
-    mov rdi, domain
-    mov rsi, type
-    mov rdx, protocol
-    syscall
+    syscall3 SYS_socket, domain, type, protocol
 }
 
 macro bind sockfd, addr, addrlen
@@ -62,9 +54,7 @@ macro accept sockfd, addr, addrlen
 
 macro exit code
 {
-    mov rax, SYS_exit
-    mov rdi, code
-    syscall
+    syscall1 SYS_exit, code
 }
 
 macro check_error
