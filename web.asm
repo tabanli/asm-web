@@ -9,30 +9,30 @@ entry main
 main:
     write STDOUT, start, start.size
 
+    ;; Create a socket
     write STDOUT, socket_trace_msg, socket_trace_msg.size
     socket AF_INET, SOCK_STREAM, 0
-    cmp rax, 0
-    jl error
+    check_error
     mov qword [sockfd], rax
 
+    ;; Bind socket
     write STDOUT, bind_trace_msg, bind_trace_msg.size
     mov word [servaddr.sin_family], AF_INET
     mov word [servaddr.sin_port], 14619
     mov dword [servaddr.sin_addr], INADDR_ANY
     bind [sockfd], servaddr.sin_family, sizeof_servaddr
-    cmp rax, 0
-    jl error
+    check_error
 
+    ;; Listen socket
     write STDOUT, listen_trace_msg, listen_trace_msg.size
     listen [sockfd], MAX_CONN
-    cmp rax, 0
-    jl error
+    check_error
 
+    ;; Accept client connections with a loop
 next_request:
     write STDOUT, accept_trace_msg, accept_trace_msg.size
     accept [sockfd], cliaddr.sin_family, cliaddr_len
-    cmp rax, 0
-    jl error
+    check_error
 
     mov qword [connfd], rax
 
@@ -45,6 +45,7 @@ next_request:
     close [sockfd]
     exit EXIT_SUCCESS
 
+    ;; Error handling
 error:
     write STDERR, error_msg, error_msg.size
     close [connfd]

@@ -66,3 +66,9 @@ macro exit code
     mov rdi, code
     syscall
 }
+
+macro check_error
+{
+    cmp rax, 0
+    jl error
+}
