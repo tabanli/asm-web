@@ -3,6 +3,10 @@
 
 web dev w/assembly following https://youtu.be/b-q4QBy52AA tutorial. Use [fasm](https://flatassembler.net/) to assemble.
 
+## Preview
+
+![](https://github.com/tabanli/asm-web/assets/image/preview.png)
+
 ## References
 
 - https://youtu.be/b-q4QBy52AA
