@@ -5,7 +5,7 @@ web dev w/assembly following https://youtu.be/b-q4QBy52AA tutorial. Use [fasm](h
 
 ## Preview
 
-![](https://github.com/tabanli/asm-web/assets/image/preview.png)
+![](https://github.com/tabanli/asm-web/blob/master/assets/image/preview.png)
 
 ## References
 
